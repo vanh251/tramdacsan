@@ -36,13 +36,13 @@ public class ProductController {
     }
 
     //Thêm mới sản phẩm vào kho (POST)
-    @GetMapping
+    @PostMapping
     public Product createProduct (@RequestBody Product product){  //RequestBody chuyển JSON thành 1 Object
         return productRepository.save(product);
     }
 
     //Cập nhật thông tin sản phẩm (PUT)
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct (@PathVariable Integer id,@RequestBody Product productDetails){
         Optional<Product> productOptional = productRepository.findById(id);
         if(productOptional.isPresent()){
@@ -61,7 +61,7 @@ public class ProductController {
     }
 
     //xoa 1 sam pham (DELETE)
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Product> deleteProduct (@PathVariable Integer id){
         Optional<Product> productOptional = productRepository.findById(id);
         if(productOptional.isPresent()){
